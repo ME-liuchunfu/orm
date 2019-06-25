@@ -3,12 +3,13 @@ package xin.spring.common.bean;
 import xin.spring.base.exception.BeanInitException;
 import xin.spring.base.exception.DBException;
 import xin.spring.base.orm.DataRow;
-import xin.spring.base.orm.Query;
+import xin.spring.base.orm.QueryFactory;
+import xin.spring.base.orm.QuerySqlFactory;
 import xin.spring.base.params.OrmParams;
 
 public class StudentDao{
 	
-	Query query = new Query();
+	QuerySqlFactory query = QueryFactory.getQueryInstance();
 	
 	public boolean insert(OrmParams params, Class<Student> clazz) throws BeanInitException{
 		return query.insert(params, clazz);

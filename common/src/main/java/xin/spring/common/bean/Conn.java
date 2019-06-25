@@ -17,15 +17,15 @@ public class Conn {
 		
 		StudentDao dao = new StudentDao();
 		long start = System.currentTimeMillis();
-		boolean dels = dao.dels(new Object[]{1,2,3,4});
-		System.out.println(dels);
-//		DataRow<Student> dataRow = new DataRow<Student>();
-//		dataRow.setStart(0);
-//		DataRow<Student> page = dao.page(dataRow, null);
-//		for(Student student : page.getDatas()){
-//			System.out.println(student);
-//		}
-//		System.out.println(dataRow);
+//		boolean dels = dao.dels(new Object[]{1,2,3,4});
+//		System.out.println(dels);
+		DataRow<Student> dataRow = new DataRow<Student>();
+		dataRow.setStart(0);
+		DataRow<Student> page = dao.page(dataRow, null);
+		for(Student student : page.getDatas()){
+			System.out.println(student);
+		}
+		System.out.println(dataRow);
 		//insertOne(dao);
 		//insert(dao);
 		//queryById(dao);
