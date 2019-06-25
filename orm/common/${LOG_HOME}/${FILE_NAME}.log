@@ -1,0 +1,8 @@
+2019-06-25 at 21:52:11 CST INFO  xin.spring.base.orm.Query 92 insert - SQL: == >  INSERT INTO tb_student ( name, type, age  )  VALUES  (  ?,  ?,  ?  ) 
+2019-06-25 at 21:52:11 CST INFO  xin.spring.base.orm.Query 93 insert - params : == > [Ljava.lang.Object;@55b0dcab
+2019-06-25 at 21:52:36 CST INFO  xin.spring.base.orm.Query 92 insert - SQL: == >  INSERT INTO tb_student ( name, type, age  )  VALUES  (  ?,  ?,  ?  ) 
+2019-06-25 at 21:52:36 CST INFO  xin.spring.base.orm.Query 93 insert - params : == > [Ljava.lang.Object;@55b0dcab
+2019-06-25 at 22:11:47 CST INFO  xin.spring.base.orm.Query 54 queryById - SQL: == >  SELECT * FROM tb_student WHERE id ? 
+2019-06-25 at 22:11:47 CST INFO  xin.spring.base.orm.Query 55 queryById - params : == > [1]
+2019-06-25 at 22:12:08 CST INFO  xin.spring.base.orm.Query 54 queryById - SQL: == >  SELECT * FROM tb_student WHERE id = ? 
+2019-06-25 at 22:12:08 CST INFO  xin.spring.base.orm.Query 55 queryById - params : == > [1]
