@@ -160,10 +160,40 @@ public class Query extends BaseOrm implements QuerySqlFactory {
 			object[0] = dataRow.getStart() - 1;
 			object[1] = dataRow.getSize();
 		}
-		List<T> list = queryAll(sql + " LIMIT ?,? ", object, clazz);
+		sql += " LIMIT ?,? ";
+		LOGGER.info("SQL == > " + sql);
+		LOGGER.info("params ==> " + Arrays.toString(object));
+		List<T> list = queryAll(sql, object, clazz);
 		dataRow.setDatas(list);
 		dataRow.setStart(dataRow.getStart() + 1);
 		return dataRow;
+	}
+
+	public <T> boolean update(String sql, Object[] params) {
+		LOGGER.info("SQL== > " + sql);
+		LOGGER.info("params ==> " + Arrays.toString(params));
+		int update = toUpdate(sql, params);
+		return getBoolean(update);
+	}
+
+	public <T> boolean delBrachById(Object[] params, Class<T> clazz) throws BeanInitException, DBException {
+		if(params == null){
+			throw new DBException("params参数列表为空，请检查");
+		}
+		if(params.length <= 0){
+			throw new DBException("params参数列表为空，请检查");
+		}
+		String tableName = ObjectReflect.getTableName(clazz);
+		String tableId = ObjectReflect.getTableId(clazz);
+		Object[][] objects = new Object[params.length][1];
+		String[] sqls = new String[params.length];
+		for(int i=0; i<params.length; i++){
+			objects[i][0] = params[i];
+			sqls[i] = DELETE + tableName + " WHERE " + tableId + " = ? ";
+		}
+		LOGGER.info("SQL ==> " + Arrays.toString(sqls));
+		LOGGER.info("params ==> " + Arrays.toString(objects));
+		return branch(sqls, objects);
 	}
 
 }

@@ -39,4 +39,7 @@ public class StudentDao{
 		return query.queryList("SELECT * FROM tb_student WHERE 1=1 ", dataRow, params, Student.class);
 	}
 
+	public boolean dels(Object[] params) throws BeanInitException, DBException{
+		return query.delBrachById(params, Student.class);
+	}
 }

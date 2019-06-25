@@ -83,4 +83,23 @@ public interface QuerySqlFactory {
 	 * @return: DataRow<T>      
 	 */
 	<T> DataRow<T> queryList(String sql, DataRow<T> dataRow, Object[] params, Class<T> clazz) throws BeanInitException,DBException;
+	
+	/**
+	 * @Title: update   
+	 * @Description: TODO(这里用一句话描述这个方法的作用)   修改
+	 * @param: @param sql
+	 * @param: @param params
+	 * @return: boolean      
+	 */
+	<T> boolean update(String sql, Object[] params);
+
+	/**
+	 * @Title: delBrachById   
+	 * @Description: TODO(这里用一句话描述这个方法的作用)   批量删除
+	 * @param: @param params
+	 * @param: @param clazz
+	 * @return: boolean      
+	 */
+	<T> boolean  delBrachById(Object[] params, Class<T> clazz) throws BeanInitException, DBException;
+	
 }
