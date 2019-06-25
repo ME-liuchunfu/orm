@@ -5,6 +5,7 @@ import java.util.Properties;
 import xin.spring.base.database.DataBaseConnection;
 import xin.spring.base.exception.BeanInitException;
 import xin.spring.base.exception.DBException;
+import xin.spring.base.orm.DataRow;
 import xin.spring.base.params.OrmParams;
 
 public class Conn {
@@ -16,9 +17,16 @@ public class Conn {
 		
 		StudentDao dao = new StudentDao();
 		long start = System.currentTimeMillis();
+		DataRow<Student> dataRow = new DataRow<Student>();
+		dataRow.setStart(0);
+		DataRow<Student> page = dao.page(dataRow, null);
+		for(Student student : page.getDatas()){
+			System.out.println(student);
+		}
+		System.out.println(dataRow);
 		//insertOne(dao);
 		//insert(dao);
-		queryById(dao);
+		//queryById(dao);
 		//querySet(dao);
 		//queryAll(dao);
 		//update(dao);

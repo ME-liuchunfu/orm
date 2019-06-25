@@ -88,13 +88,13 @@ public abstract class BaseOrm {
 	 * @Title: getCountTotal   
 	 * @Description: TODO(这里用一句话描述这个方法的作用)  查询总记录数 
 	 */
-	protected int getCountTotal(String countSql){
+	protected int getCountTotal(String countSql, Object[] object){
 		Integer total = (Integer) queryObject(new EntityMapper<Integer>() {
 			public Integer getEntity(ResultSet resultSet) throws SQLException {
 				Integer total = resultSet.getInt("total");
 				return total;
 			}
-		}, countSql, null);
+		}, countSql, object);
 		if(total == null){
 			total = 0;
 		}

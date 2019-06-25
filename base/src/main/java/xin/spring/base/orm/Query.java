@@ -112,4 +112,58 @@ public class Query extends BaseOrm implements QuerySqlFactory {
 		return getBoolean(toUpdate(sql.toString(), object));
 	}
 
+	public <T> List<T> queryList(Class<T> clazz) throws BeanInitException {
+		StringBuffer sql = new StringBuffer(SELECT);
+		OrmParams column = new OrmParams(clazz);
+		sql.append( column.get(OrmParams.TABLE_NAME_KEY) );
+		sql.append(" WHERE 1=1 ");
+		
+		LOGGER.info("SQL: == > " + sql.toString());
+		try {
+			return queryAll(sql.toString(), null, clazz);
+		} catch (DBException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public <T> List<T> queryList(DataRow<T> dataRow, OrmParams params, Class<T> clazz) throws BeanInitException {
+		StringBuffer sql = new StringBuffer(SELECT);
+		OrmParams column = new OrmParams(clazz);
+		sql.append( column.get(OrmParams.TABLE_NAME_KEY) );
+		sql.append(" WHERE 1=1 ");
+		
+		LOGGER.info("SQL: == > " + sql.toString());
+		try {
+			return queryAll(sql.toString(), null, clazz);
+		} catch (DBException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public <T> DataRow<T> queryList(String sql, DataRow<T> dataRow, Object[] params, Class<T> clazz)
+			throws BeanInitException, DBException {
+		int totle = getCountTotal("SELECT COUNT(*) AS total FROM ( " + sql + " ) template ", params);
+		dataRow.setTotle(totle);
+		Object[] object = null;
+		
+		if(params != null){
+			object = new Object[params.length + 2];
+			for(int i = 0; i<params.length; i++){
+				object[i] = params[i];
+			}
+			object[params.length] = dataRow.getStart() - 1;
+			object[params.length + 1] = dataRow.getSize();
+		}else{
+			object = new Object[2];
+			object[0] = dataRow.getStart() - 1;
+			object[1] = dataRow.getSize();
+		}
+		List<T> list = queryAll(sql + " LIMIT ?,? ", object, clazz);
+		dataRow.setDatas(list);
+		dataRow.setStart(dataRow.getStart() + 1);
+		return dataRow;
+	}
+
 }

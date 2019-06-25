@@ -2,6 +2,7 @@ package xin.spring.common.bean;
 
 import xin.spring.base.exception.BeanInitException;
 import xin.spring.base.exception.DBException;
+import xin.spring.base.orm.DataRow;
 import xin.spring.base.orm.Query;
 import xin.spring.base.params.OrmParams;
 
@@ -33,5 +34,9 @@ public class StudentDao{
 //	public boolean updateObject(Student student){
 //		return getBoolean(toUpdate("UPDATE tb_student SET name = ? WHERE id = ? ", new Object[]{student.getName(), student.getId()}));
 //	}
+	
+	public DataRow<Student> page(DataRow<Student> dataRow, Object[] params) throws BeanInitException, DBException{
+		return query.queryList("SELECT * FROM tb_student WHERE 1=1 ", dataRow, params, Student.class);
+	}
 
 }

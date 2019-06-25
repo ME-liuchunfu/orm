@@ -1,6 +1,9 @@
 package xin.spring.base.orm;
 
+import java.util.List;
+
 import xin.spring.base.exception.BeanInitException;
+import xin.spring.base.exception.DBException;
 import xin.spring.base.params.OrmParams;
 
 /**
@@ -52,4 +55,32 @@ public interface QuerySqlFactory {
 	 */
 	<T> boolean insert(T t) throws BeanInitException;
 	
+	/**
+	 * @Title: queryList   
+	 * @Description: TODO(这里用一句话描述这个方法的作用)   列表查询
+	 * @param: @throws BeanInitException      
+	 * @return: List<T>      
+	 */
+	<T> List<T> queryList(Class<T> clazz) throws BeanInitException;
+	
+	/**
+	 * @Title: queryList   
+	 * @Description: TODO(这里用一句话描述这个方法的作用)   分页或参数查询列表
+	 * @param: @param params
+	 * @param: @param clazz
+	 * @param: @throws BeanInitException      
+	 * @return: List<T>      
+	 */
+	<T> List<T> queryList(DataRow<T> dataRow, OrmParams params, Class<T> clazz) throws BeanInitException;
+	
+	
+	/**
+	 * @Title: queryList   
+	 * @Description: TODO(这里用一句话描述这个方法的作用)   分页或参数查询列表
+	 * @param: @param params
+	 * @param: @param clazz
+	 * @param: @throws BeanInitException      
+	 * @return: DataRow<T>      
+	 */
+	<T> DataRow<T> queryList(String sql, DataRow<T> dataRow, Object[] params, Class<T> clazz) throws BeanInitException,DBException;
 }
