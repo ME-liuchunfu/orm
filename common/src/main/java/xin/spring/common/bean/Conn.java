@@ -2,9 +2,13 @@ package xin.spring.common.bean;
 
 import java.util.Properties;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+
 import xin.spring.base.database.DataBaseConnection;
 import xin.spring.base.exception.BeanInitException;
 import xin.spring.base.exception.DBException;
+import xin.spring.base.jsonfomart.ObjectParseJson;
 import xin.spring.base.orm.DataRow;
 import xin.spring.base.params.OrmParams;
 
@@ -15,6 +19,8 @@ public class Conn {
 		properties.load(Conn.class.getClassLoader().getResourceAsStream("db.properties"));
 		DataBaseConnection.seDataSource(properties);
 		
+		//Gson gson = new Gson();
+		//JSONObject
 		StudentDao dao = new StudentDao();
 		long start = System.currentTimeMillis();
 //		boolean dels = dao.dels(new Object[]{1,2,3,4});
@@ -33,6 +39,16 @@ public class Conn {
 		//queryAll(dao);
 		//update(dao);
 		System.out.println(System.currentTimeMillis() - start);
+		
+		long a = System.currentTimeMillis();
+		String json = ObjectParseJson.toJSONString(dataRow);
+		System.out.println("json:" + json);
+		System.out.println("ms:" + (System.currentTimeMillis() - a));
+		
+		long s = System.currentTimeMillis();
+		
+		System.out.println(ObjectParseJson.parseObject(json, new TypeReference<DataRow<Student>>(){}));
+		System.out.println("ms:"+ (System.currentTimeMillis() - s));
 	}
 
 

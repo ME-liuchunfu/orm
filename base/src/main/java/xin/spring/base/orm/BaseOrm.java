@@ -12,9 +12,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import xin.spring.base.database.DataBaseConnection;
 import xin.spring.base.database.EntityMapper;
 import xin.spring.base.database.RowMapper;
@@ -37,12 +34,6 @@ public abstract class BaseOrm {
 	protected static final String SELECT = " SELECT * FROM ";
 	protected static final String DELETE = " DELETE FROM ";
 	protected static final String INSERT = " INSERT INTO ";
-	protected static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
-	
-	/**
-	 * Gson解析
-	 */
-	protected static Gson GSON = new GsonBuilder().setDateFormat(DATE_FORMAT).create();
 	
 	/**
 	 * 设置preparedStatement的sql语句值

@@ -47,7 +47,7 @@ public class DataRow<T> {
 	}
 
 	public void setStart(int start) {
-		this.start = start <= 0 ? 10 : start;
+		this.start = start <= 0 ? 1 : start;
 	}
 
 	public int getSize() {
