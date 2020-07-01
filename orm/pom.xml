@@ -15,7 +15,7 @@
 	      <commons.dbcp.version>1.4</commons.dbcp.version>
 	      <commons.pool.version>1.6</commons.pool.version>
 	      <commons.lang.version>2.6</commons.lang.version>
-	      <log4j.version>2.11.2</log4j.version>
+	      <log4j.version>2.13.3</log4j.version>
 	      <fastjson.version>1.2.58</fastjson.version>
 	  </properties>
   
